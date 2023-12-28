@@ -1,0 +1,9 @@
+version: '2.22'
+
+services:
+  go-app:
+    container_name: go-app
+    build: .
+    env_file:
+      - .env
+      
