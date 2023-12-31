@@ -1,13 +1,18 @@
-FROM golang:1.22
+FROM golang:latest
 
 WORKDIR /usr/src/app
 
+RUN go install github.com/cosmtrek/air@latest
+
+
 COPY . .
 
-RUN go get -d -v ./...
+RUN go mod tidy
 
-RUN go build -o go-postgres . 
+# RUN go get -d -v ./...
 
-EXPOSE 8080
+# RUN go build -o go-postgres . 
 
-CMD ["./go-postgres"]
+# EXPOSE 8080
+
+# CMD ["./go-postgres"]
