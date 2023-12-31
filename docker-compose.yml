@@ -1,9 +1,21 @@
-version: '2.22'
+version: '3.8'
 
 services:
   go-app:
     container_name: go-app
     build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
     env_file:
       - .env
-      
+    command: air cmd/main.go -b 0.0.0.0
+  db:
+    image: postgres:alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+volumes:
+  postgres-db:
